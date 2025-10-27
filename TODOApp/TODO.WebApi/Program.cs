@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using TODO.WebApi.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<TODOAppDbContext>(options =>
+{
+     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
 
 var app = builder.Build();
 
@@ -19,14 +27,11 @@ app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
-}
-
-);
+});
 
 app.UseHttpsRedirection();
 
-
-
 app.Run();
+
 
 
