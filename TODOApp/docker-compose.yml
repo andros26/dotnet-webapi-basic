@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  todo-app-api:
+    image: todo-app-api
+    build:
+      context: ./TODO.WebApi
+      dockerfile: Dockerfile
+    ports:
+      - "8980:80"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
