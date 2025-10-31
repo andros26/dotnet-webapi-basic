@@ -4,8 +4,10 @@ services:
   todo-app-api:
     image: todo-app-api
     build:
-      context: ./TODO.WebApi
-      dockerfile: Dockerfile
+      # El contexto es la raíz (donde está el .sln y el docker-compose.yml)
+      context: . 
+      # La ruta al Dockerfile dentro de ese contexto
+      dockerfile: TODO.WebApi/Dockerfile 
     ports:
       - "8980:80"
     networks:
@@ -14,3 +16,4 @@ services:
 networks:
   mynetwork:
     driver: bridge
+
