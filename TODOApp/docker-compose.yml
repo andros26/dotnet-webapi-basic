@@ -4,16 +4,18 @@ services:
   todo-app-api:
     image: todo-app-api
     build:
-      # El contexto es la raíz (donde está el .sln y el docker-compose.yml)
       context: . 
-      # La ruta al Dockerfile dentro de ese contexto
       dockerfile: TODO.WebApi/Dockerfile 
     ports:
       - "8980:80"
+    environment:
+      # Fuerza a Kestrel a escuchar en HTTP puerto 80
+      - ASPNETCORE_URLS=http://+:80
+      # Deshabilita la redirección a HTTPS en el entorno de desarrollo
+      - ASPNETCORE_ENVIRONMENT=Development
     networks:
       - mynetwork
 
 networks:
   mynetwork:
     driver: bridge
-

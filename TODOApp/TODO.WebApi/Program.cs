@@ -29,7 +29,11 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllers();
 });
 
-app.UseHttpsRedirection();
+// DESHABILITAR REDIRECCIÓN HTTPS EN DESARROLLO (DENTRO DE DOCKER)
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
 app.Run();
 
