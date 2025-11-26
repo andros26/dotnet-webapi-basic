@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TODO.WebApi.Models;
 
@@ -10,9 +11,11 @@ using TODO.WebApi.Models;
 namespace TODO.WebApi.Migrations
 {
     [DbContext(typeof(TODOAppDbContext))]
-    partial class TODOAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251125130456_LibraryDigitalFinal")]
+    partial class LibraryDigitalFinal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

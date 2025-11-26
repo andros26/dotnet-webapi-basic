@@ -17,11 +17,11 @@ builder.Services.AddDbContext<TODOAppDbContext>(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
-app.UseSwagger();
-app.UseSwaggerUI();
-//}
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseRouting();
 app.UseEndpoints(endpoints =>
@@ -29,11 +29,7 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllers();
 });
 
-// DESHABILITAR REDIRECCIÓN HTTPS EN DESARROLLO (DENTRO DE DOCKER)
-if (!app.Environment.IsDevelopment())
-{
-    app.UseHttpsRedirection();
-}
+app.UseHttpsRedirection();
 
 app.Run();
 
